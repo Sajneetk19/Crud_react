@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "1cb2",
+      "username": "aniket",
+      "email": "ram@gmail.com",
+      "city": "mohali",
+      "number": "12345678909"
+    },
+    {
+      "id": "ae52",
+      "username": "aniket",
+      "email": "ram@gmail.com",
+      "city": "mohali",
+      "number": "12345678909"
+    }
+  ]
+}
