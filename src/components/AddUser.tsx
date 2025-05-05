@@ -1,7 +1,8 @@
 "use client";
 
 import { Button, Card, TextField } from "@mui/material";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 type FormState = {
   success: boolean | null;
@@ -39,10 +40,7 @@ async function AddFormData(
 
     const data = await response.json();
     console.log("data", data);
-
-    return {
-      success: true,
-    };
+    return { success: true };
   } catch (error: any) {
     return {
       success: false,
@@ -52,12 +50,17 @@ async function AddFormData(
 }
 
 function AddUser() {
+  const navigate = useNavigate();
   const [state, formAction, isPending] = useActionState<FormState, FormData>(
     AddFormData,
     { success: null }
   );
 
-  
+  useEffect(() => {
+    if (state.success) {
+      navigate("/get_users");
+    }
+  }, [state.success, navigate]);
 
   return (
     <>

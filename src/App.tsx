@@ -1,13 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddUser from "./components/AddUser";
-import Day1 from "./Practise/Day1";
+import GetUsers from "./components/GetUser";
+// import Day1 from "./Practise/Day1";
 function App() {
   return (
     <>
-      {/* <p className="font-bold sm:text-2xl md:text-3xl lg:text-4xl">
-        {" "}
-        CRUD Operation
-      </p> */}
-      <AddUser />
+       
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AddUser/>}/>
+          <Route path="/get_users" element={<GetUsers/>}/>
+        </Routes>
+      </BrowserRouter>
+
       {/* <Day1/> */}
     </>
   );
