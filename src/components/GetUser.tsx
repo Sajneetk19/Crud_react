@@ -45,7 +45,21 @@ export default function GetUsers() {
     getUserData();
   }, []);
 
-  console.log(data);
+
+const handleDelete = async (itemToDelete: number) => {
+  try {
+    await fetch(`http://localhost:3000/users/${itemToDelete}`, {
+      method: 'DELETE',
+    });
+    const updatedData = data.filter((item: any) => item.id !== itemToDelete);
+    setData(updatedData);
+  } catch (error) {
+    console.error('Failed to delete user:', error);
+  }
+};
+
+
+   console.log("all the data ",data);
   return (
     <TableContainer
       component={Paper}
@@ -63,7 +77,7 @@ export default function GetUsers() {
         </TableHead>
         <TableBody>
           {data.map((item: any, id) => (
-            <StyledTableRow key={item.id}>
+            <StyledTableRow key={id}>
               <StyledTableCell component="th" scope="row">
                 {item.username}
               </StyledTableCell>
@@ -77,7 +91,7 @@ export default function GetUsers() {
                   <div style={{ paddingRight: "8px" }}>
                     <BorderColorIcon />
                   </div>
-                  <div>
+                  <div onClick={() => handleDelete(item.id)}>
                     <DeleteIcon />
                   </div>
                 </div>
@@ -87,5 +101,5 @@ export default function GetUsers() {
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  )
 }

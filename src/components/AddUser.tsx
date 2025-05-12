@@ -54,7 +54,7 @@ function AddUser() {
   const [state, formAction, isPending] = useActionState<FormState, FormData>(
     AddFormData,
     { success: null }
-  );
+  )
 
   useEffect(() => {
     if (state.success) {
@@ -108,7 +108,7 @@ function AddUser() {
         </Card>
       </div>
     </>
-  );
+  )
 }
 
 export default AddUser;
