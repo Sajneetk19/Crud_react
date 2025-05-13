@@ -29,7 +29,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function GetUsers() {
+export default function GetUsers({setEditData,setFormData}:any) {
   const [data, setData] = useState([]);
   const getUserData = async () => {
     try {
@@ -58,6 +58,11 @@ const handleDelete = async (itemToDelete: number) => {
   }
 };
 
+
+const handleEdit = (val:any)=>{
+   setEditData(val.id);
+   setFormData(val);
+}
 
    console.log("all the data ",data);
   return (
@@ -89,7 +94,7 @@ const handleDelete = async (itemToDelete: number) => {
                   style={{ display: "flex", gap: "5px", justifyContent: "end" }}
                 >
                   <div style={{ paddingRight: "8px" }}>
-                    <BorderColorIcon />
+                    <BorderColorIcon onClick={() => handleEdit(item)}/>
                   </div>
                   <div onClick={() => handleDelete(item.id)}>
                     <DeleteIcon />
